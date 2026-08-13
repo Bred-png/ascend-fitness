@@ -122,8 +122,8 @@ function Index() {
         <CardContent className="pt-5">
           <p className="text-sm font-semibold">This week</p>
           <div className="mt-3 flex items-end justify-between gap-2">
-            {last7.map((d) => (
-              <div key={d.label} className="flex flex-1 flex-col items-center gap-1">
+            {last7.map((d, i) => (
+              <div key={i} className="flex flex-1 flex-col items-center gap-1">
                 <div
                   className={`w-full rounded-md ${d.done ? "bg-hype" : "bg-surface"}`}
                   style={{ height: d.done ? 44 : 14 }}
