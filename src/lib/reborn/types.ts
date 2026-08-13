@@ -48,6 +48,53 @@ export interface LogEntry {
   dayTitle: string;
   xp: number;
   weightKg?: number;
+  steps?: number;
+  activeKcal?: number;
+  cardioMinutes?: number;
+  source?: "manual" | "health";
+}
+
+/* ---------------- Mental training ---------------- */
+
+export type MentalCategory = "language" | "reading" | "skill" | "other";
+
+export interface MentalGoal {
+  id: string;
+  name: string;
+  category: MentalCategory;
+  /** sessions targeted per week; 7 = daily */
+  perWeek: number;
+  targetDate?: string;
+  milestoneTarget?: number;
+  archived: boolean;
+  createdAt: string;
+}
+
+export interface MentalLog {
+  id: string;
+  goalId: string;
+  date: string; // yyyy-mm-dd
+  minutes?: number;
+  note?: string;
+  xp: number;
+}
+
+/* ---------------- Settings ---------------- */
+
+export type ThemeMode = "light" | "dark" | "system";
+
+export interface NotificationSettings {
+  enabled: boolean;
+  time: string; // HH:mm
+  workout: boolean;
+  mental: boolean;
+  streak: boolean;
+}
+
+export interface Settings {
+  theme: ThemeMode;
+  notifications: NotificationSettings;
+  healthSync: boolean;
 }
 
 export interface AppState {
@@ -55,5 +102,10 @@ export interface AppState {
   plan: Plan | null;
   logs: LogEntry[];
   xp: number;
+  bodyXp: number;
+  mindXp: number;
   badges: string[];
+  goals: MentalGoal[];
+  mentalLogs: MentalLog[];
+  settings: Settings;
 }
