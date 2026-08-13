@@ -32,8 +32,8 @@ export function ranksFor(path: Path) {
 export function rankProgress(path: Path, xp: number) {
   const ranks = ranksFor(path);
   let idx = 0;
-  for (let i = 0; i < ranks.length; i++) if (xp >= ranks[i].minXp) idx = i;
-  const current = ranks[idx];
+  for (let i = 0; i < ranks.length; i++) if (xp >= ranks[i]!.minXp) idx = i;
+  const current = ranks[idx]!;
   const next = ranks[idx + 1];
   const span = next ? next.minXp - current.minXp : 1;
   const pct = next ? Math.min(100, ((xp - current.minXp) / span) * 100) : 100;

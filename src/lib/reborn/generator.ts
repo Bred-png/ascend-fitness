@@ -100,7 +100,7 @@ export function generatePlan(p: Profile): Plan {
   const movesPerFocus = p.level === "beginner" ? 1 : 2;
 
   const days = Math.min(7, Math.max(2, p.daysPerWeek));
-  const template = SPLITS[days] ?? SPLITS[3];
+  const template = SPLITS[days] ?? SPLITS[3]!;
 
   const cardioBase = { beginner: 1.5, intermediate: 3, advanced: 5 }[p.level];
   const cardioKm =
@@ -116,7 +116,7 @@ export function generatePlan(p: Profile): Plan {
     const isTraining = t < days && (7 - i) >= (days - t);
     if (!isTraining) {
       plannedDays.push({
-        day: DAY_NAMES[i],
+        day: DAY_NAMES[i]!,
         title: "Recovery Protocol",
         rest: true,
         focus: "Rest",
@@ -125,7 +125,7 @@ export function generatePlan(p: Profile): Plan {
       });
       continue;
     }
-    const tpl = template[t];
+    const tpl = template[t]!;
     t++;
     const blocks: ExerciseBlock[] = [];
     tpl.focus.forEach((f) => {
@@ -133,13 +133,18 @@ export function generatePlan(p: Profile): Plan {
         blocks.push({
           name: m.name,
           sets: Math.max(2, levelSets + volumeMod + (f === "core" ? -1 : 0)),
-          reps: f === "core" ? (m.name.includes("Hold") || m.name.includes("Plank") ? "30-60s" : "15-20") : repMap[p.goal],
+          reps:
+            f === "core"
+              ? m.name.includes("Hold") || m.name.includes("Plank")
+                ? "30-60s"
+                : "15-20"
+              : repMap[p.goal]!,
           restSec: f === "core" ? 30 : goalRest,
         });
       });
     });
     plannedDays.push({
-      day: DAY_NAMES[i],
+      day: DAY_NAMES[i]!,
       title: tpl.title,
       rest: false,
       focus: tpl.focus.join(" / "),

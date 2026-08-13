@@ -90,7 +90,8 @@ export function StoreProvider({ children }: { children: ReactNode }) {
     setState((s) => {
       const date = todayKey();
       if (s.logs.some((l) => l.date === date)) return s;
-      const logs = [...s.logs, { date, dayTitle, xp, weightKg }];
+      const entry: LogEntry = weightKg === undefined ? { date, dayTitle, xp } : { date, dayTitle, xp, weightKg };
+      const logs: LogEntry[] = [...s.logs, entry];
       const streak = computeStreak(logs);
       const bonus = Math.min(50, streak * 2);
       return { ...s, logs, xp: s.xp + xp + bonus, badges: computeBadges(logs, streak) };
