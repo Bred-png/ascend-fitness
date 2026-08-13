@@ -21,7 +21,8 @@ function isNative() {
 async function loadPlugin(): Promise<any | null> {
   if (!isNative()) return null;
   try {
-    const mod = await import(/* @vite-ignore */ "capacitor-health");
+    const spec = "capacitor-health";
+    const mod = await import(/* @vite-ignore */ spec);
     return (mod as any).Health ?? null;
   } catch {
     return null;
