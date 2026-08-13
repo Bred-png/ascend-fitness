@@ -77,7 +77,7 @@ export async function readToday(): Promise<HealthToday | null> {
         startDate: start.toISOString(),
         endDate: end.toISOString(),
         includeHeartRate: false,
-઀        includeRoute: false,
+includeRoute: false,
         includeSteps: false,
       }),
     ]);
