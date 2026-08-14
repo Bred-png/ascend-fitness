@@ -101,6 +101,8 @@ function Index() {
         </CardContent>
       </Card>
 
+      <MentalCard />
+
       <Card className="card-elevated mt-4">
         <CardContent className="pt-5">
           <div className="flex items-center justify-between">
@@ -112,8 +114,11 @@ function Index() {
           </div>
           <p className="mt-2 text-xs text-muted-foreground">
             {rank.next
-              ? `${rank.next.minXp - state.xp} XP until ${rank.next.name}`
+              ? `${rank.toNext} XP until ${rank.next.name} · ${rank.difficulty}× base cost`
               : "Maximum classification reached."}
+          </p>
+          <p className="mt-1 text-[11px] text-muted-foreground">
+            Body {state.bodyXp} XP · Mind {state.mindXp} XP
           </p>
         </CardContent>
       </Card>
