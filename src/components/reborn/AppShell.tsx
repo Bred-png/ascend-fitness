@@ -8,6 +8,7 @@ import { Progress } from "@/components/ui/progress";
 const NAV = [
   { to: "/", label: "Home", icon: Home },
   { to: "/plan", label: "Plan", icon: Dumbbell },
+  { to: "/mental", label: "Mind", icon: Brain },
   { to: "/history", label: "History", icon: LineChart },
   { to: "/profile", label: "Profile", icon: User },
 ] as const;
