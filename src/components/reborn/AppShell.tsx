@@ -1,5 +1,5 @@
 import { Link, useRouterState } from "@tanstack/react-router";
-import { Dumbbell, Home, LineChart, User } from "lucide-react";
+import { Brain, Dumbbell, Home, LineChart, User } from "lucide-react";
 import type { ReactNode } from "react";
 import { useStore } from "@/lib/reborn/store";
 import { rankProgress } from "@/lib/reborn/ranks";
@@ -8,6 +8,7 @@ import { Progress } from "@/components/ui/progress";
 const NAV = [
   { to: "/", label: "Home", icon: Home },
   { to: "/plan", label: "Plan", icon: Dumbbell },
+  { to: "/mental", label: "Mind", icon: Brain },
   { to: "/history", label: "History", icon: LineChart },
   { to: "/profile", label: "Profile", icon: User },
 ] as const;
@@ -38,7 +39,7 @@ export function AppShell({ children }: { children: ReactNode }) {
       <main className="mx-auto max-w-md px-4 pb-28 pt-4">{children}</main>
 
       <nav className="fixed inset-x-0 bottom-0 z-20 border-t border-border bg-background/95 backdrop-blur">
-        <div className="mx-auto grid max-w-md grid-cols-4">
+        <div className="mx-auto grid max-w-md grid-cols-5">
           {NAV.map(({ to, label, icon: Icon }) => {
             const active = pathname === to;
             return (
