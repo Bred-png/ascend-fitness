@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as HistoryRouteImport } from './routes/history'
+import { Route as MentalRouteImport } from './routes/mental'
 import { Route as PlanRouteImport } from './routes/plan'
 import { Route as ProfileRouteImport } from './routes/profile'
 
@@ -22,6 +23,11 @@ const IndexRoute = IndexRouteImport.update({
 const HistoryRoute = HistoryRouteImport.update({
   id: '/history',
   path: '/history',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MentalRoute = MentalRouteImport.update({
+  id: '/mental',
+  path: '/mental',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PlanRoute = PlanRouteImport.update({
@@ -38,12 +44,14 @@ const ProfileRoute = ProfileRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/history': typeof HistoryRoute
+  '/mental': typeof MentalRoute
   '/plan': typeof PlanRoute
   '/profile': typeof ProfileRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/history': typeof HistoryRoute
+  '/mental': typeof MentalRoute
   '/plan': typeof PlanRoute
   '/profile': typeof ProfileRoute
 }
@@ -51,20 +59,22 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/history': typeof HistoryRoute
+  '/mental': typeof MentalRoute
   '/plan': typeof PlanRoute
   '/profile': typeof ProfileRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/history' | '/plan' | '/profile'
+  fullPaths: '/' | '/history' | '/mental' | '/plan' | '/profile'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/history' | '/plan' | '/profile'
-  id: '__root__' | '/' | '/history' | '/plan' | '/profile'
+  to: '/' | '/history' | '/mental' | '/plan' | '/profile'
+  id: '__root__' | '/' | '/history' | '/mental' | '/plan' | '/profile'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   HistoryRoute: typeof HistoryRoute
+  MentalRoute: typeof MentalRoute
   PlanRoute: typeof PlanRoute
   ProfileRoute: typeof ProfileRoute
 }
@@ -83,6 +93,13 @@ declare module '@tanstack/react-router' {
       path: '/history'
       fullPath: '/history'
       preLoaderRoute: typeof HistoryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/mental': {
+      id: '/mental'
+      path: '/mental'
+      fullPath: '/mental'
+      preLoaderRoute: typeof MentalRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/plan': {
@@ -105,6 +122,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   HistoryRoute: HistoryRoute,
+  MentalRoute: MentalRoute,
   PlanRoute: PlanRoute,
   ProfileRoute: ProfileRoute,
 }

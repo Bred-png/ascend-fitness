@@ -1,5 +1,5 @@
 import { Link, useRouterState } from "@tanstack/react-router";
-import { Dumbbell, Home, LineChart, User } from "lucide-react";
+import { Brain, Dumbbell, Home, LineChart, User } from "lucide-react";
 import type { ReactNode } from "react";
 import { useStore } from "@/lib/reborn/store";
 import { rankProgress } from "@/lib/reborn/ranks";
