@@ -211,6 +211,8 @@ function ProfilePage() {
         </CardContent>
       </Card>
 
+      <SettingsPanel />
+
       <Button
         variant="outline"
         className="mt-4 w-full"
