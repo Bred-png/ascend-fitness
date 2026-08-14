@@ -122,6 +122,83 @@ export type Database = {
         }
         Relationships: []
       }
+      mental_goals: {
+        Row: {
+          archived: boolean
+          category: string
+          created_at: string
+          id: string
+          milestone_target: number | null
+          name: string
+          per_week: number
+          target_date: string | null
+          user_id: string
+        }
+        Insert: {
+          archived?: boolean
+          category?: string
+          created_at?: string
+          id?: string
+          milestone_target?: number | null
+          name: string
+          per_week?: number
+          target_date?: string | null
+          user_id: string
+        }
+        Update: {
+          archived?: boolean
+          category?: string
+          created_at?: string
+          id?: string
+          milestone_target?: number | null
+          name?: string
+          per_week?: number
+          target_date?: string | null
+          user_id?: string
+        }
+        Relationships: []
+      }
+      mental_logs: {
+        Row: {
+          created_at: string
+          for_date: string
+          goal_id: string
+          id: string
+          minutes: number | null
+          note: string | null
+          user_id: string
+          xp: number
+        }
+        Insert: {
+          created_at?: string
+          for_date?: string
+          goal_id: string
+          id?: string
+          minutes?: number | null
+          note?: string | null
+          user_id: string
+          xp?: number
+        }
+        Update: {
+          created_at?: string
+          for_date?: string
+          goal_id?: string
+          id?: string
+          minutes?: number | null
+          note?: string | null
+          user_id?: string
+          xp?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "mental_logs_goal_id_fkey"
+            columns: ["goal_id"]
+            isOneToOne: false
+            referencedRelation: "mental_goals"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       nutrition_logs: {
         Row: {
           calories: number
