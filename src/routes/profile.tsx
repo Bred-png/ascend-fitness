@@ -197,7 +197,7 @@ function ProfilePage() {
                 const kg = Number(weighIn);
                 if (!kg) return;
                 saveProfile({ ...p, weightKg: kg });
-                logWorkout("Weigh-in", 5, kg);
+                logWorkout("Weigh-in", 5, { weightKg: kg });
                 setWeighIn("");
                 toast.success("Weight recorded");
               }}
