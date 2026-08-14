@@ -6,6 +6,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { AppShell } from "@/components/reborn/AppShell";
 import { Onboarding } from "@/components/reborn/Onboarding";
+import { MentalCard } from "@/components/reborn/MentalCard";
 import { useStore } from "@/lib/reborn/store";
 import { COPY } from "@/lib/reborn/generator";
 import { BADGES, rankProgress } from "@/lib/reborn/ranks";
