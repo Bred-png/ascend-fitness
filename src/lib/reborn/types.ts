@@ -79,6 +79,33 @@ export interface MentalLog {
   xp: number;
 }
 
+/* ---------------- AI Body Scan & Muscle Distribution ---------------- */
+
+export interface MuscleDistribution {
+  chest: number; // 0 - 100 estimated development index
+  back: number; // 0 - 100
+  armsShoulders: number; // 0 - 100
+  coreAbs: number; // 0 - 100
+  legsGlutes: number; // 0 - 100
+}
+
+export type Somatotype = "ectomorph" | "mesomorph" | "endomorph" | "athletic-hybrid";
+
+export interface BodyScanAnalysis {
+  id: string;
+  date: string; // yyyy-mm-dd HH:mm
+  imageDataUrl?: string; // thumbnail preview
+  somatotype: Somatotype;
+  estimatedBodyFatRange: string; // e.g. "12-15%"
+  muscleDistribution: MuscleDistribution;
+  symmetryScore: number; // 0 - 100
+  overallDevelopmentIndex: number; // 0 - 100
+  keyStrengths: string[];
+  focusAreas: string[];
+  aiSummary: string;
+  recommendedPathFocus: string;
+}
+
 /* ---------------- Settings ---------------- */
 
 export type ThemeMode = "light" | "dark" | "system";
@@ -95,6 +122,7 @@ export interface Settings {
   theme: ThemeMode;
   notifications: NotificationSettings;
   healthSync: boolean;
+  geminiApiKey?: string;
 }
 
 export interface AppState {
@@ -107,5 +135,7 @@ export interface AppState {
   badges: string[];
   goals: MentalGoal[];
   mentalLogs: MentalLog[];
+  scans: BodyScanAnalysis[];
   settings: Settings;
 }
+

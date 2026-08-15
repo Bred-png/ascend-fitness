@@ -36,6 +36,7 @@ const EMPTY: AppState = {
   badges: [],
   goals: [],
   mentalLogs: [],
+  scans: [],
   settings: DEFAULT_SETTINGS,
 };
 
@@ -56,6 +57,9 @@ interface Ctx {
   deleteGoal: (id: string) => void;
   logMental: (goalId: string, opts?: { minutes?: number; note?: string }) => void;
   goalStats: (goalId: string) => { streak: number; total: number; loggedToday: boolean; thisWeek: number };
+  /* body scans */
+  addBodyScan: (scan: import("./types").BodyScanAnalysis) => void;
+  deleteBodyScan: (id: string) => void;
   /* settings */
   updateSettings: (patch: Partial<Settings>) => void;
   setTheme: (t: ThemeMode) => void;
@@ -102,6 +106,7 @@ function migrate(raw: Partial<AppState>): AppState {
   const merged: AppState = {
     ...EMPTY,
     ...raw,
+    scans: raw.scans ?? [],
     settings: { ...DEFAULT_SETTINGS, ...(raw.settings ?? {}) },
   };
   merged.settings.notifications = {
@@ -257,6 +262,29 @@ export function StoreProvider({ children }: { children: ReactNode }) {
     [state.mentalLogs],
   );
 
+  /* ---------- body scans ---------- */
+
+  const addBodyScan = useCallback((scan: import("./types").BodyScanAnalysis) => {
+    setState((s) => {
+      const scans = [scan, ...s.scans];
+      const scanBonus = 30;
+      const bodyXp = s.bodyXp + scanBonus;
+      return {
+        ...s,
+        scans,
+        bodyXp,
+        xp: bodyXp + s.mindXp,
+      };
+    });
+  }, []);
+
+  const deleteBodyScan = useCallback((id: string) => {
+    setState((s) => ({
+      ...s,
+      scans: s.scans.filter((scan) => scan.id !== id),
+    }));
+  }, []);
+
   /* ---------- settings ---------- */
 
   const updateSettings = useCallback((patch: Partial<Settings>) => {
@@ -286,6 +314,8 @@ export function StoreProvider({ children }: { children: ReactNode }) {
     deleteGoal,
     logMental,
     goalStats,
+    addBodyScan,
+    deleteBodyScan,
     updateSettings,
     setTheme,
     resolvedTheme,

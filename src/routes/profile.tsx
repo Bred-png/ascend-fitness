@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { toast } from "sonner";
 import { AppShell } from "@/components/reborn/AppShell";
+import { BodyScanCard } from "@/components/reborn/BodyScanCard";
 import { Onboarding } from "@/components/reborn/Onboarding";
 import { SettingsPanel } from "@/components/reborn/SettingsPanel";
 import { Button } from "@/components/ui/button";
@@ -211,6 +212,8 @@ function ProfilePage() {
           </p>
         </CardContent>
       </Card>
+
+      <BodyScanCard />
 
       <SettingsPanel />
 
