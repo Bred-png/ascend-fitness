@@ -213,34 +213,6 @@ export function SettingsPanel() {
           )}
         </CardContent>
       </Card>
-
-      <Card className="card-elevated mt-4">
-        <CardContent className="space-y-3 pt-5">
-          <p className="flex items-center gap-2 text-sm font-semibold">
-            <span className="text-primary">✨</span> Google AI Studio / Gemini Vision
-          </p>
-          <p className="text-xs text-muted-foreground">
-            Connect your free Google AI Studio API key for deep multimodal physique scanning and muscle mass distribution estimation.
-          </p>
-          <div className="space-y-2">
-            <Label htmlFor="gemini-key">Gemini API Key (Optional)</Label>
-            <Input
-              id="gemini-key"
-              type="password"
-              placeholder="AIzaSy..."
-              defaultValue={s.geminiApiKey || ""}
-              onBlur={(e) => {
-                const key = e.target.value.trim();
-                updateSettings({ geminiApiKey: key });
-                toast.success(key ? "Gemini API key saved" : "Gemini API key cleared");
-              }}
-            />
-          </div>
-          <p className="text-[11px] text-muted-foreground">
-            Zero cost on the Gemini free tier. If omitted, Reborn uses built-in biomechanical baseline estimates.
-          </p>
-        </CardContent>
-      </Card>
     </>
   );
 }

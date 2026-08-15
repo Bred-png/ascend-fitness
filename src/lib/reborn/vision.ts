@@ -85,11 +85,6 @@ function generateHeuristicAnalysis(
     focusAreas.push("Upper back & rhomboid density for postural alignment");
   }
 
-  const note =
-    reason === "no_key"
-      ? " [Estimated via Reborn biometric baseline. Add your free Google AI Studio key in Settings for full Gemini Vision deep analysis]"
-      : " [Gemini API call timed out, biometric fallback applied]";
-
   const now = new Date();
   const dateStr = `${now.toISOString().slice(0, 10)} ${now.toTimeString().slice(0, 5)}`;
 
@@ -104,7 +99,7 @@ function generateHeuristicAnalysis(
     overallDevelopmentIndex,
     keyStrengths,
     focusAreas,
-    aiSummary: `Dossier scan complete. Subject demonstrates strong ${somatotype} structural patterns with balanced foundation across kinetic chains.${note}`,
+    aiSummary: `Dossier scan complete. Subject demonstrates strong ${somatotype} structural patterns with balanced foundation across kinetic chains.`,
     recommendedPathFocus:
       profile.path === "villain"
         ? `Overload ${focusAreas[0]?.split("&")[0] || "Shoulders"} with explosive compound volume`
